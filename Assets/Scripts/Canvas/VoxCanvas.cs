@@ -75,7 +75,7 @@ public class VoxCanvas : MonoBehaviour {
         for (int x = 0; x < Scale; x++) {
             for (int y = 0; y < Scale; y++) {
                 for (int z = 0; z < Scale; z++) {
-                    Place (new Vector3Int (x, y, z), Color.white);
+                    Place (new Vector3Int (x, y, z), Random.ColorHSV());
                 }
             }
         }
