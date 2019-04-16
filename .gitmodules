@@ -1,0 +1,3 @@
+[submodule "Assets/Scripts/VR Tools"]
+	path = Assets/Scripts/VR Tools
+	url = https://github.com/dsitnick/VR-Tools.git
