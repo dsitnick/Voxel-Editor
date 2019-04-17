@@ -72,31 +72,16 @@ public class VoxCanvas : MonoBehaviour {
     }
 
     void Start () {
-        for (int x = 0; x < Scale; x++) {
-            for (int y = 0; y < Scale; y++) {
-                for (int z = 0; z < Scale; z++) {
-                    Place (new Vector3Int (x, y, z), Random.ColorHSV());
-                }
-            }
-        }
-
-        for (int x = 0; x < Scale; x++) {
-            for (int y = 0; y < Scale; y++) {
-                for (int z = 0; z < Scale; z++) {
-                    if (x % 2 == 0 ^ y % 2 == 0 ^ z % 2 == 0) {
-                        Remove (new Vector3Int (x, y, z));
-                        //Place (new Vector3Int (x, y, z), Color.red);
-                    }
-                }
-            }
+        for (int i = 0; i < 5; i++) {
+            Place (new Vector3Int (i, 10, 0), Color.red);
         }
     }
 
-    void Update () {
+    void LateUpdate () {
 
         int count = system.GetParticles (particleBuffer);
         
-        for (int i = count; i < pendingAdds.Count; i++) {
+        for (int i = 0; i < pendingAdds.Count; i++) {
 
             AddDelta a = pendingAdds[i];
             defaultParticle.startColor = a.color;
@@ -105,7 +90,6 @@ public class VoxCanvas : MonoBehaviour {
             particleBuffer[i + count] = defaultParticle;
 
         }
-        count += pendingAdds.Count;
 
         if (pendingDeltas.Count > 0) {
             for (int i = 0; i < count; i++) {
@@ -129,9 +113,11 @@ public class VoxCanvas : MonoBehaviour {
 
                         break;
                     }
+                    
                 }
             }
         }
+        count += pendingAdds.Count;
 
         pendingAdds.Clear ();
         pendingDeltas.Clear ();
